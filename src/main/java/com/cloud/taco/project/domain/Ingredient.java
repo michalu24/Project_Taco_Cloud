@@ -1,14 +1,17 @@
 package com.cloud.taco.project.domain;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
+
 /**
  * Ingredient class
  * @author Michał Urbański
  */
+
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Entity
 public class Ingredient {
@@ -19,5 +22,5 @@ public class Ingredient {
     @Column(name = "ingredient_name")
     private String name;
 
-    private final Type type;
+    private Type type;
 }

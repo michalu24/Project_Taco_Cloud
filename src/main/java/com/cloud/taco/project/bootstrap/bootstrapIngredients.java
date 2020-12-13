@@ -28,11 +28,28 @@ public class bootstrapIngredients implements CommandLineRunner {
     }
 
     public void initIngredients() {
+
         Ingredient ingredient = Ingredient.builder()
                 .name("Cheddar")
                 .type(Type.CHEESE)
                 .build();
 
         service.save(ingredient);
+
+        Ingredient ingredient2 = Ingredient.builder()
+                .name("Parmigioano Reggiano")
+                .type(Type.CHEESE)
+                .build();
+
+        service.save(ingredient2);
+
+        service.save(ingredient);
+
+        Ingredient ingredient3 = Ingredient.builder()
+                .name("Blue Cheese")
+                .type(Type.CHEESE)
+                .build();
+
+        service.save(ingredient3);
     }
 }
