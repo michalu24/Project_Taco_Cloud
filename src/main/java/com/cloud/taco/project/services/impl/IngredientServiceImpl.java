@@ -7,9 +7,14 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+/**
+ * Implementation of Ingredient service
+ * @author Michał Urbański
+ */
+
 @Service
 public class IngredientServiceImpl implements IngredientService {
-
     private final IngredientRepository repository;
 
     public IngredientServiceImpl(IngredientRepository repository) {

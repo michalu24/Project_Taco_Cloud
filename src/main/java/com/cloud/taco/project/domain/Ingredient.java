@@ -4,7 +4,10 @@ import lombok.Builder;
 import lombok.Data;
 
 import javax.persistence.*;
-
+/**
+ * Ingredient class
+ * @author Michał Urbański
+ */
 @Data
 @Builder
 @Entity

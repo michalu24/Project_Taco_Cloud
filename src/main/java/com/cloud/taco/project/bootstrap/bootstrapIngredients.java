@@ -7,6 +7,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+/**
+ * Bootstrap class for Ingredient init in DB on run
+ * @author Michał Urbański
+ */
 
 @Component
 @Slf4j
