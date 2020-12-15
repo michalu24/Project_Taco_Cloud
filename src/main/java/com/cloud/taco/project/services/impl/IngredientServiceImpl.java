@@ -1,6 +1,7 @@
 package com.cloud.taco.project.services.impl;
 
 import com.cloud.taco.project.domain.Ingredient;
+import com.cloud.taco.project.domain.Type;
 import com.cloud.taco.project.repositories.IngredientRepository;
 import com.cloud.taco.project.services.IngredientService;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,10 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public void update(Ingredient object) {
         repository.save(object);
+    }
+
+    @Override
+    public Set<Ingredient> findAllByType(Type type) {
+        return repository.findAllByType(type);
     }
 }

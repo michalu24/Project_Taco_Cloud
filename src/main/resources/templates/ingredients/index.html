@@ -8,33 +8,54 @@
 
 </head>
 <body>
-<div class="container-fluid">
-    <header>
-        <h1>Ingredients List</h1>
-    </header>
 
+<div class="container-fluid" style="text-align: center">
+    <img th:src="@{/images/taco.svg}" style="width: 40%"/>
+</div>
+
+<div class="container-fluid" style="width: 500px">
+    <h1>Składniki</h1>
 
     <section>
-        <table class="table">
+        <form method="post" th:object="${design}">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td>
+                        <h2>Wrapy</h2>
+                    </td>
+                </tr>
+                <tr th:each="ingredient:${wraps}">
+                    <td th:text="${ingredient.name}"></td>
+                    <td><input name="ingredients" type="checkbox" th:value="${ingredient.id}"></td>
+                </tr>
+                <tr><td><h2>Mięso</h2></td></tr>
+                <tr th:each="ingredient:${proteins}">
+                    <td th:text="${ingredient.name}"></td>
+                    <td><input name="ingredients" type="checkbox" th:value="${ingredient.id}"></td>
+                </tr>
+                <tr><td><h2>Warzywa</h2></td></tr>
+                <tr th:each="ingredient:${veggies}">
+                    <td th:text="${ingredient.name}"></td>
+                    <td><input name="ingredients" type="checkbox" th:value="${ingredient.id}"></td>
+                </tr>
+                <tr><td><h2>Sery</h2></td></tr>
+                <tr th:each="ingredient:${cheeses}">
+                    <td th:text="${ingredient.name}"></td>
+                    <td><input name="ingredients" type="checkbox" th:value="${ingredient.id}"></td>
+                </tr>
+                <tr><td><h2>Sosy</h2></td></tr>
+                <tr th:each="ingredient:${sauces}">
+                    <td th:text="${ingredient.name}"></td>
+                    <td><input name="ingredients" type="checkbox" th:value="${ingredient.id}"></td>
+                </tr>
+                </tbody>
 
-            <thead>
-            <tr>
-                <td>
-                    <h4>Ingredient Name</h4>
-                </td>
-                <td>
-                    <h4>Ingredient Type</h4>
-                </td>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="ingredient:${ingredients}">
-                <td th:text="${ingredient.name}"></td>
-                <td th:text="${ingredient.type}"></td>
-            </tr>
-            </tbody>
-
-        </table>
+            </table>
+            <div class="container-fluid" style="margin-bottom: 50px; text-align: center">
+                <button class="btn btn-dark">Złóż zamówienie</button>
+            </div>
+        </form>
     </section>
 </div>
 
