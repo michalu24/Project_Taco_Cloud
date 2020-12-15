@@ -24,10 +24,68 @@ public class bootstrapIngredients implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        initIngredients();
+        initCheeses();
+        initWraps();
+        initProtein();
+        initVeggies();
+        initSauce();
     }
 
-    public void initIngredients() {
+    public void initSauce() {
+
+        Ingredient ingredient1 = Ingredient.builder()
+                .name("Pikantny sos pomidorowy")
+                .type(Type.SAUCE)
+                .build();
+
+        service.save(ingredient1);
+
+
+        Ingredient ingredient2 = Ingredient.builder()
+                .name("Smietana")
+                .type(Type.SAUCE)
+                .build();
+
+        service.save(ingredient2);
+    }
+
+    public void initVeggies() {
+
+        Ingredient ingredient1 = Ingredient.builder()
+                .name("Pomidory krojone w kostkę")
+                .type(Type.VEGGIES)
+                .build();
+
+        service.save(ingredient1);
+
+
+        Ingredient ingredient2 = Ingredient.builder()
+                .name("Sałata")
+                .type(Type.VEGGIES)
+                .build();
+
+        service.save(ingredient2);
+    }
+
+    public void initProtein() {
+
+        Ingredient ingredient1 = Ingredient.builder()
+                .name("Mielona wołowina")
+                .type(Type.PROTEIN)
+                .build();
+
+        service.save(ingredient1);
+
+
+        Ingredient ingredient2 = Ingredient.builder()
+                .name("Kawałki mięsa")
+                .type(Type.PROTEIN)
+                .build();
+
+        service.save(ingredient2);
+    }
+
+    public void initCheeses() {
 
         Ingredient ingredient = Ingredient.builder()
                 .name("Cheddar")
@@ -51,5 +109,26 @@ public class bootstrapIngredients implements CommandLineRunner {
                 .build();
 
         service.save(ingredient3);
+    }
+
+
+    public void initWraps() {
+
+        Ingredient ingredient1 = Ingredient.builder()
+                .name("Pszenna")
+                .type(Type.WRAP)
+                .build();
+
+        service.save(ingredient1);
+
+
+        Ingredient ingredient2 = Ingredient.builder()
+                .name("Kukurydziana")
+                .type(Type.WRAP)
+                .build();
+
+        service.save(ingredient2);
+
+
     }
 }
