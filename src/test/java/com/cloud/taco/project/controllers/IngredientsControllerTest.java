@@ -54,15 +54,23 @@ class IngredientsControllerTest {
 
         mockMvc.perform(get("/index"))
                 .andExpect(status().isOk())
-                .andExpect(model().attribute("ingredients", service.findAll()))
+                .andExpect(model().attribute("wraps", service.findAllByType(Type.WRAP)))
+                .andExpect(model().attribute("proteins", service.findAllByType(Type.PROTEIN)))
+                .andExpect(model().attribute("veggies", service.findAllByType(Type.VEGGIES)))
+                .andExpect(model().attribute("cheeses", service.findAllByType(Type.CHEESE)))
+                .andExpect(model().attribute("sauces", service.findAllByType(Type.SAUCE)))
                 .andExpect(view().name("ingredients/index"));
 
     }
 
     @Test
-    void modelShouldBeExecutedOnce() {
+    void modelShouldBeExecutedOnceForEachAttribute() {
 
         String viewName = controller.getIndex(model);
-        verify(model, times(1)).addAttribute(eq("ingredients"),any());
+        verify(model, times(1)).addAttribute(eq("wraps"),any());
+        verify(model, times(1)).addAttribute(eq("proteins"),any());
+        verify(model, times(1)).addAttribute(eq("veggies"),any());
+        verify(model, times(1)).addAttribute(eq("cheeses"),any());
+        verify(model, times(1)).addAttribute(eq("sauces"),any());
     }
 }
