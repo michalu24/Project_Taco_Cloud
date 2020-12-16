@@ -1,8 +1,6 @@
 package com.cloud.taco.project.controllers;
 
-import com.cloud.taco.project.domain.Ingredient;
 import com.cloud.taco.project.domain.Order;
-import com.cloud.taco.project.domain.Taco;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
