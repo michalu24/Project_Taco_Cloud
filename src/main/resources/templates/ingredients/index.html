@@ -2,12 +2,16 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Create Taco</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 </head>
 <body>
+<div class="container-fluid" style="text-align:center; width: 700px">
+    <h1>Witaj!</h1>
+    <h2>Stwórz swoje taco już teraz!</h2>
+</div>
 
 <div class="container-fluid" style="text-align: center">
     <img th:src="@{/images/taco.svg}" style="width: 40%"/>
@@ -17,7 +21,7 @@
     <h1>Składniki</h1>
 
     <section>
-        <form method="post" th:object="${design}">
+        <form method="post" th:object="${taco}">
             <table class="table">
                 <tbody>
                 <tr>
@@ -52,8 +56,16 @@
                 </tbody>
 
             </table>
-            <div class="container-fluid" style="margin-bottom: 50px; text-align: center">
-                <button class="btn btn-dark">Złóż zamówienie</button>
+            <div class="container-fluid">
+                <h2>Nazwa Taco</h2>
+            </div>
+            <div class="container-fluid">
+                <input type="text" th:field="*{name}">
+            </div>
+            <div class="container-fluid" style="margin-bottom: 3rem;
+                                                text-align: center;
+                                                margin-top: 2rem">
+                <button class="btn btn-dark">Przejdź do zamówienia</button>
             </div>
         </form>
     </section>
