@@ -6,10 +6,13 @@ import com.cloud.taco.project.services.IngredientService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import javax.validation.Valid;
 
 /**
  * Basic index Controller
@@ -17,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  */
 @Slf4j
 @Controller
-@RequestMapping({"/","/index"})
+@RequestMapping({"/","/index",""})
 public class IngredientsController {
 
     private final IngredientService ingredientService;
@@ -27,15 +30,17 @@ public class IngredientsController {
     }
 
 
-
-    @GetMapping
-    public String getIndex(Model model) {
-
+    @ModelAttribute
+    public void init(Model model) {
         model.addAttribute("wraps",ingredientService.findAllByType(Type.WRAP));
         model.addAttribute("proteins",ingredientService.findAllByType(Type.PROTEIN));
         model.addAttribute("veggies",ingredientService.findAllByType(Type.VEGGIES));
         model.addAttribute("cheeses",ingredientService.findAllByType(Type.CHEESE));
         model.addAttribute("sauces",ingredientService.findAllByType(Type.SAUCE));
+    }
+
+    @GetMapping
+    public String getIndex(Model model) {
 
         model.addAttribute("taco",new Taco()); // Koniecznie w Getie trzeba przekazać nowy obiekt aby działało
 
@@ -43,7 +48,10 @@ public class IngredientsController {
     }
 
     @PostMapping
-    public String createTaco(@ModelAttribute("taco") Taco taco) {
+    public String createTaco(@Valid @ModelAttribute("taco") Taco taco, Errors errors) {
+        if (errors.hasErrors()) {
+            return "ingredients/index";
+        }
         log.debug("Taco created...");
         System.out.println(taco.toString());
         return "redirect:/order";
