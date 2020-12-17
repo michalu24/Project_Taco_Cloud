@@ -21,7 +21,7 @@ public class Order {
     private String address;
     @CreditCardNumber(message = "Podaj prawidłowy numer karty kredytowej!")
     private String ccNumber;
-    @Pattern(regexp = "^(0[1-9]1[0-2])(\\/)([1-9][0-9])$",
+    @Pattern(regexp = "^(0[1-9]|1[0-2])([\\\\/])([1-9][0-9])$",
             message = "Wartość musi być w formacie MM/RR")
     private String ccExpDate;
     @Digits(integer = 3, fraction = 0,message = "Kod musi składać się z 3 cyfr!")

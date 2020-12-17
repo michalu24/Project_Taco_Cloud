@@ -18,28 +18,58 @@
 
         <h2>First Name</h2>
         <input type="text" th:field="*{customerFirstName}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('customerFirstName')}"
+                  th:errors="*{customerFirstName}">Błąd</span>
+        </div>
 
         <h2>Last Name</h2>
         <input type="text" th:field="*{customerLastName}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('customerLastName')}"
+                  th:errors="*{customerLastName}">Błąd</span>
+        </div>
 
         <h2>Email</h2>
         <input type="text" th:field="*{customerEmail}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('customerEmail')}"
+                  th:errors="*{customerEmail}">Błąd</span>
+        </div>
 
         <h2>Delivery Address</h2>
         <input type="text" th:field="*{address}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('address')}"
+                  th:errors="*{address}">Błąd</span>
+        </div>
 
         <h2>Credit Card Number</h2>
         <input type="text" th:field="*{ccNumber}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('ccNumber')}"
+                  th:errors="*{ccNumber}">Błąd</span>
+        </div>
 
         <h2>Credit Card Expiration Date</h2>
         <input type="text" th:field="*{ccExpDate}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('ccExpDate')}"
+                  th:errors="*{ccExpDate}">Błąd</span>
+        </div>
 
         <h2>Credit Card CVV</h2>
         <input type="text" th:field="*{ccCVV}">
+        <div style="color:red">
+            <span th:if="${#fields.hasErrors('ccCVV')}"
+                  th:errors="*{ccCVV}">Błąd</span>
+        </div>
+
         <div style="margin-top: 2rem;
                     margin-bottom: 2rem">
             <button class="btn btn-dark">Złóż zamówienie</button>
         </div>
+
     </form>
 
 </div>
