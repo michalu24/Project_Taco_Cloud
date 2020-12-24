@@ -21,7 +21,7 @@ class OrderControllerTest {
     Model model;
 
     @InjectMocks
-    OrderController controller = new OrderController();
+    OrderController controller;
 
 
     @Test

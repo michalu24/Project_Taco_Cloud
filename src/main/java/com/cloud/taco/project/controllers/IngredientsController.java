@@ -1,9 +1,12 @@
 package com.cloud.taco.project.controllers;
 
+import com.cloud.taco.project.domain.Result;
 import com.cloud.taco.project.domain.Taco;
 import com.cloud.taco.project.domain.Type;
 import com.cloud.taco.project.services.IngredientService;
+import com.cloud.taco.project.services.TacoService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -23,10 +26,19 @@ import javax.validation.Valid;
 @RequestMapping({"/","/index",""})
 public class IngredientsController {
 
+
+    @Autowired
+    private Result result;
+
+
     private final IngredientService ingredientService;
 
-    public IngredientsController(IngredientService ingredientService) {
+    private final TacoService tacoService;
+
+
+    public IngredientsController(IngredientService ingredientService, TacoService tacoService) {
         this.ingredientService = ingredientService;
+        this.tacoService = tacoService;
     }
 
 
@@ -37,13 +49,14 @@ public class IngredientsController {
         model.addAttribute("veggies",ingredientService.findAllByType(Type.VEGGIES));
         model.addAttribute("cheeses",ingredientService.findAllByType(Type.CHEESE));
         model.addAttribute("sauces",ingredientService.findAllByType(Type.SAUCE));
+
+        model.addAttribute("taco", new Taco());
     }
 
     @GetMapping
     public String getIndex(Model model) {
 
-        model.addAttribute("taco",new Taco()); // Koniecznie w Getie trzeba przekazać nowy obiekt aby działało
-
+        System.out.println(result);
         return "ingredients/index";
     }
 
@@ -53,7 +66,18 @@ public class IngredientsController {
             return "ingredients/index";
         }
         log.debug("Taco created...");
+
+        tacoService.save(taco);
+        result.getTacos().add(taco);
+
         System.out.println(taco.toString());
-        return "redirect:/order";
+        System.out.println(result.getTacos().toString());
+
+        return "redirect:/confirm";
+    }
+
+    @GetMapping("/confirm")
+    public String confirmStatus() {
+        return "ingredients/confirm";
     }
 }

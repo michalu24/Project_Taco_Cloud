@@ -14,8 +14,10 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@Table(name = "ingredients")
 public class Ingredient {
     @Id
+    @Column(name = "ingredient_id")
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 

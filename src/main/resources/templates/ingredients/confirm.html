@@ -2,24 +2,31 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Confirmation</title>
+    <title>Confirm</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
-<div class="container-fluid" style="width: 700px; text-align:center">
 
-    <h1 th:text="'Potwierdzenie zamówienia dla '
-    + ${result.order.customerFirstName}
-    +' '+ ${result.order.customerLastName}"></h1>
+<div class="container-fluid" style="margin-top: 3rem; text-align:center">
 
-    <h1 th:text="'Zamówienie złożone'"> Zamówienie złożone</h1>
-    <h2 th:text="'Dziękujemy i zapraszamy ponownie!'">Dziękujemy i zapraszamy ponownie!</h2>
+    <h1 th:text="'Your taco has been created!'"></h1>
+    <h2> Would you like to add another?</h2>
+
 </div>
 
-<div class="container-fluid" style="text-align: center">
-    <img th:src="@{/images/taco.svg}" style="width: 40%"/>
+<div class="container-fluid" style="margin-top: 2rem; text-align:center">
+    <a th:href="@{'/'}">
+        <button class="btn btn-primary"> Yes, let's add another</button>
+    </a>
 </div>
+
+<div class="container-fluid" style="margin-top: 2rem; text-align:center">
+    <a th:href="@{'/order'}">
+        <button class="btn btn-dark">No, let's proceed to order</button>
+    </a>
+</div>
+
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

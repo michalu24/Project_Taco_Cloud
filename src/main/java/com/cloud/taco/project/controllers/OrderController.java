@@ -1,7 +1,10 @@
 package com.cloud.taco.project.controllers;
 
 import com.cloud.taco.project.domain.Order;
+import com.cloud.taco.project.domain.Result;
+import com.cloud.taco.project.services.OrderService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -17,10 +20,19 @@ import javax.validation.Valid;
 @RequestMapping("/order")
 public class OrderController {
 
+    @Autowired
+    private Result result;
+
+    private final OrderService orderService;
+
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping
     public String getForm(Model model) {
         model.addAttribute("order", new Order());
+        System.out.println(result);
         return "order/index";
     }
 
@@ -30,6 +42,10 @@ public class OrderController {
             return "order/index";
         }
         log.debug("Order created...");
+        order.setTacos(result.getTacos());
+        orderService.save(order);
+        result.setOrder(order);
+        System.out.println(order.toString());
         return "redirect:/confirmation/index";
     }
 }
