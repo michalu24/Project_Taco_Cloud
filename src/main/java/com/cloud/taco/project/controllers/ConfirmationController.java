@@ -11,8 +11,6 @@ public class ConfirmationController {
     @Autowired
     private Result result;
 
-
-
     @GetMapping("/confirmation/index")
     public String getConfirmation(Model model) {
         model.addAttribute("result", result);

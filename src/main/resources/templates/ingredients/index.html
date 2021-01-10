@@ -21,7 +21,7 @@
     <h1>Składniki</h1>
 
     <section>
-        <form method="post" th:object="${taco}">
+        <form method="post" th:object="${taco}"th:action="@{/index/create}">
             <table class="table">
                 <tbody>
                 <tr>

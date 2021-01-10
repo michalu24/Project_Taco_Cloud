@@ -23,7 +23,7 @@ import javax.validation.Valid;
  */
 @Slf4j
 @Controller
-@RequestMapping({"/","/index",""})
+@RequestMapping({"/","/index"})
 public class IngredientsController {
 
 
@@ -59,8 +59,8 @@ public class IngredientsController {
         System.out.println(result);
         return "ingredients/index";
     }
-
-    @PostMapping
+    //TODO Try stuff with radio buttons to create single group req. attribute name in html 09.01.2021
+    @PostMapping("/create")
     public String createTaco(@Valid @ModelAttribute("taco") Taco taco, Errors errors) {
         if (errors.hasErrors()) {
             return "ingredients/index";
