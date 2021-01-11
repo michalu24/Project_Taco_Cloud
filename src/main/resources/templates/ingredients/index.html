@@ -8,6 +8,13 @@
 
 </head>
 <body>
+
+<div class="container-fluid" style="text-align:right;">
+    <a th:href="@{/logout}">
+        <label th:text="'Zalogowany jako: '+${user.fullName}"></label>
+        <button class="btn btn-dark">Logout</button>
+    </a>
+</div>
 <div class="container-fluid" style="text-align:center; width: 700px">
     <h1>Witaj!</h1>
     <h2>Stwórz swoje taco już teraz!</h2>

@@ -3,10 +3,13 @@ package com.cloud.taco.project.controllers;
 import com.cloud.taco.project.domain.Result;
 import com.cloud.taco.project.domain.Taco;
 import com.cloud.taco.project.domain.Type;
+import com.cloud.taco.project.domain.User;
 import com.cloud.taco.project.services.IngredientService;
 import com.cloud.taco.project.services.TacoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -51,7 +54,15 @@ public class IngredientsController {
         model.addAttribute("sauces",ingredientService.findAllByType(Type.SAUCE));
 
         model.addAttribute("taco", new Taco());
+
+        Authentication authentication = SecurityContextHolder
+                .getContext()
+                .getAuthentication();
+        User user = (User) authentication.getPrincipal();
+
+        model.addAttribute("user", user);
     }
+
 
     @GetMapping
     public String getIndex(Model model) {
@@ -59,7 +70,6 @@ public class IngredientsController {
         System.out.println(result);
         return "ingredients/index";
     }
-    //TODO Try stuff with radio buttons to create single group req. attribute name in html 09.01.2021
     @PostMapping("/create")
     public String createTaco(@Valid @ModelAttribute("taco") Taco taco, Errors errors) {
         if (errors.hasErrors()) {

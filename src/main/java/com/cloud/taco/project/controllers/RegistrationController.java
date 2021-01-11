@@ -19,7 +19,6 @@ public class RegistrationController {
         this.repository = repository;
         this.encoder = encoder;
     }
-    //TODO Change index.html form to use more thymeleaf 09.01.2021
     @GetMapping
     public String registrationForm() {
         return "registration/index";

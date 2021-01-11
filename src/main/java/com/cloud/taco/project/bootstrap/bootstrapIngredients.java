@@ -5,8 +5,6 @@ import com.cloud.taco.project.domain.Type;
 import com.cloud.taco.project.domain.User;
 import com.cloud.taco.project.repositories.UserRepository;
 import com.cloud.taco.project.services.IngredientService;
-import com.cloud.taco.project.services.OrderService;
-import com.cloud.taco.project.services.TacoService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -23,15 +21,11 @@ import org.springframework.stereotype.Component;
 public class bootstrapIngredients implements CommandLineRunner {
 
     private final IngredientService service;
-    private final TacoService tacoService;
-    private final OrderService orderService;
     private final UserRepository repository;
 
 
-    public bootstrapIngredients(IngredientService service, TacoService tacoService, OrderService orderService, UserRepository repository) {
+    public bootstrapIngredients(IngredientService service,UserRepository repository) {
         this.service = service;
-        this.tacoService = tacoService;
-        this.orderService = orderService;
         this.repository = repository;
     }
 
@@ -46,6 +40,7 @@ public class bootstrapIngredients implements CommandLineRunner {
 
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String jack = encoder.encode("jack");
+
 
         User user = new User("Jack", jack, "Jack Sparrow", "Black pearl", "Nasau",
                 "Carribien", "00=666", "666 555 444");
